@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -15,5 +17,67 @@ package frc.robot;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+  }
+
+  public static int topButton, rightButton, bottomButton, leftButton, leftBumper, rightBumper, leftTrigger, 
+      rightTrigger, leftStickButton, rightStickButton, dpadUp, dpadRight, dpadDown, dpadLeft, 
+      PS5MuteButton, PS5HomeButton, leftMenuButton, rightMenuButton, PS5TouchpadButton, leftStickX, 
+      leftStickY, rightStickX, rightStickY;
+
+  public static void controllerConstants() {
+
+      if (DriverStation.getJoystickType(0) == 21) {
+        //PS5 Controller
+        topButton = 4;
+        rightButton = 3;
+        bottomButton = 2;
+        leftButton = 1;
+        leftBumper = 5;
+        rightBumper = 6;
+        leftTrigger = 7;
+        rightTrigger = 8;
+        leftStickButton = 11;
+        rightStickButton = 12;
+        dpadUp = 0;
+        dpadRight = 90;
+        dpadDown = 180;
+        dpadLeft = 270;
+        PS5MuteButton = 15;
+        PS5HomeButton = 13;
+        leftMenuButton = 9;
+        rightMenuButton = 10;
+        PS5TouchpadButton = 14;
+
+        leftStickX = 0; //Axis
+        leftStickY = 1; //Axis
+        rightStickX = 2; //Axis
+        rightStickY = 5; //Axis
+      } else {
+        //Xbox Controller
+        topButton = 4;
+        rightButton = 2;
+        bottomButton = 1;
+        leftButton = 3;
+        leftBumper = 5;
+        rightBumper = 6;
+        leftTrigger = 2; //Axis
+        rightTrigger = 3; //Axis
+        leftStickButton = 9;
+        rightStickButton = 10;
+        dpadUp = 0;
+        dpadRight = 90;
+        dpadDown = 180;
+        dpadLeft = 270;
+        //PS5MuteButton = null;
+        //PS5HomeButton = null;
+        leftMenuButton = 7;
+        rightMenuButton = 8;
+        //PS5TouchpadButton = null;
+        
+        leftStickX = 0; //Axis
+        leftStickY = 1; //Axis
+        rightStickX = 4; //Axis
+        rightStickY = 5; //Axis
+      }
   }
 }

@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,6 +30,7 @@ public class Robot extends TimedRobot {
   public Robot() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    Constants.controllerConstants();
     m_robotContainer = new RobotContainer();
   }
 
@@ -47,7 +49,8 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     
-    System.out.println("Robot periodic output " + m_driverController.getName());
+    //Constantly output the value of the controller, plugged into port 1
+    //System.out.println(DriverStation.getJoystickType(1));
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
