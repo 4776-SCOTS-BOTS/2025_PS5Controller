@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.LeftTriggerTest;
 import frc.robot.commands.OutputControllerType;
 import frc.robot.commands.PS5HomeButtonTest;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -63,6 +64,7 @@ public class RobotContainer {
       //PS5 Controller Only
       if (type == 21) {
         new JoystickButton(m_driverController, Constants.PS5HomeButton).onTrue(new PS5HomeButtonTest());
+        new Trigger(() -> (m_driverController.getRawAxis(3) + 1) / 2 == 1).onTrue(new LeftTriggerTest());
       }
       
     }
