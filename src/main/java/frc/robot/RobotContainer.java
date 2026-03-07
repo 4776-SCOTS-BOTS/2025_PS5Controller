@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.Constants.ControllerConstants;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -59,11 +60,11 @@ public class RobotContainer {
       new Trigger(m_exampleSubsystem::exampleCondition)
           .onTrue(new ExampleCommand(m_exampleSubsystem));
 
-      new JoystickButton(m_driverController, Constants.bottomButton).onTrue(new OutputControllerType(0));
+      new JoystickButton(m_driverController, ControllerConstants.bottomButton).onTrue(new OutputControllerType(0));
       
       //PS5 Controller Only
       if (type == 21) {
-        new JoystickButton(m_driverController, Constants.PS5HomeButton).onTrue(new PS5HomeButtonTest());
+        new JoystickButton(m_driverController, ControllerConstants.PS5HomeButton).onTrue(new PS5HomeButtonTest());
         new Trigger(() -> (m_driverController.getRawAxis(3) + 1) / 2 == 1).onTrue(new LeftTriggerTest());
       }
       
