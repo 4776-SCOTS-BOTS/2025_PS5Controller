@@ -1,1 +1,1 @@
-PS5 DualSense controller usage as Generic HID
+This file will allow you to "hot swap" between a PS5 controller and an Xbox controller by utilizing the CommandGenericHID libraries and assigning the buttons to the raw outputs via a ControllerConstants class in the top level Constants class.
