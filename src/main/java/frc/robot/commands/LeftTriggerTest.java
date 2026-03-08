@@ -7,10 +7,20 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
+
+/**
+ * A test command that fires when the PS5 left trigger (L2) is fully pressed.
+ *
+ * <p>The trigger condition in RobotContainer normalizes axis 3 from the range [-1, 1] to [0, 1]
+ * and checks for a value of exactly 1 (fully depressed). This command prints a confirmation
+ * message and ends immediately - replace the body of initialize() with real robot actions.
+ *
+ * <p>This command is only registered when a PS5 DualSense is detected (joystick type 21).
+ */
 public class LeftTriggerTest extends Command {
   /** Creates a new LeftTriggerTest. */
   public LeftTriggerTest() {
-    // Use addRequirements() here to declare subsystem dependencies.
+    // No subsystem requirements; this command only prints to the console.
   }
 
   // Called when the command is initially scheduled.

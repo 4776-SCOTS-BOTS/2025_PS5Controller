@@ -32,17 +32,21 @@ public class RobotContainer {
   // Replace with CommandPS4Controller or CommandJoystick if needed
   //private final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
-  //Controls
+  // GenericHID is used instead of CommandXboxController or CommandPS4Controller so that
+  // the same controller object works regardless of which physical controller is connected.
+  // The port number (0) matches kDriverControllerPort in OperatorConstants.
   private final GenericHID m_driverController = new GenericHID(0);
-  
-  
+
+
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
 
       // Configure the trigger bindings
       configureBindings();
 
-      System.out.println("RobotContainer output " + m_driverController.getName());
+      // Print the controller name at startup so the drive team can confirm the right
+      // controller was detected (useful when switching between PS5 and Xbox).
+      System.out.println("Controller Name, Output From RobotContainer =  " + m_driverController.getName());
     }
     /**
      * Use this method to define your trigger->command mappings. Triggers can be created via the
@@ -54,20 +58,29 @@ public class RobotContainer {
      * joysticks}.
      */
     private void configureBindings() {
+      // Cache the joystick type so we can conditionally register PS5-only bindings below.
       int type = DriverStation.getJoystickType(0);
 
       // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
       new Trigger(m_exampleSubsystem::exampleCondition)
           .onTrue(new ExampleCommand(m_exampleSubsystem));
 
+      // Pressing the bottom face button (Cross on PS5, A on Xbox) prints the raw controller
+      // type number to the console - useful for identifying unknown controllers.
       new JoystickButton(m_driverController, ControllerConstants.bottomButton).onTrue(new OutputControllerType(0));
-      
-      //PS5 Controller Only
+
+      // The following bindings only apply when a PS5 DualSense is connected (type == 21).
+      // They use features that don't exist on Xbox (home button, touchpad, etc.).
       if (type == 21) {
         new JoystickButton(m_driverController, ControllerConstants.PS5HomeButton).onTrue(new PS5HomeButtonTest());
+
+        // The PS5 left trigger (L2) is reported as axis 3, ranging from -1.0 (released)
+        // to +1.0 (fully pressed).  The expression (axis + 1) / 2 normalizes this to
+        // 0.0–1.0, and we fire the command only when that value equals exactly 1
+        // (i.e., the trigger is fully depressed).
         new Trigger(() -> (m_driverController.getRawAxis(3) + 1) / 2 == 1).onTrue(new LeftTriggerTest());
       }
-      
+
     }
   
     /**

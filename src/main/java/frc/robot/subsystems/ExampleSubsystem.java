@@ -7,8 +7,17 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+/**
+ * ExampleSubsystem is a placeholder subsystem included by the WPILib project template.
+ *
+ * <p>In a real robot project, each physical mechanism (drivetrain, arm, intake, etc.) would have
+ * its own SubsystemBase subclass. This example shows the required structure: a constructor for
+ * hardware initialization, command factory methods, and periodic/simulationPeriodic overrides.
+ *
+ * <p>Replace this class with real subsystem implementations as the robot is built out.
+ */
 public class ExampleSubsystem extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
+  /** Creates a new ExampleSubsystem. Hardware objects (motors, sensors, etc.) are initialized here. */
   public ExampleSubsystem() {}
 
   /**

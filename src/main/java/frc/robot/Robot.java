@@ -20,7 +20,6 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private final RobotContainer m_robotContainer;
-  private final GenericHID m_driverController = new GenericHID(0);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -47,7 +46,8 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     
-    //Constantly output the value of the controller, plugged into port 1
+    // Debug line: uncomment to continuously print the joystick type of the controller
+    // on port 1 to the console during every 20 ms loop tick.
     //System.out.println(DriverStation.getJoystickType(1));
   }
 
